@@ -34,7 +34,7 @@ def AddEmp():
     pri_skill = request.form['pri_skill']
     location = request.form['location']
 
-    insert_sql = "INSERT INTO employee VALUES (%s, %s, %s, %s, %s, %s)"
+    insert_sql = "INSERT INTO employee VALUES (%s, %s, %s, %s, %s)"
     cursor = db_conn.cursor()
 
     try:
