@@ -17,12 +17,12 @@ db_conn = connections.Connection(
 
 )
 output = {}
-table = 'employee'
+table = 'student'
 
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
-    return render_template('AddEmp.html')
+    return render_template('AddEmp.html', title="University of South Florida")
 
 
 @app.route("/about", methods=['POST'])
@@ -32,24 +32,23 @@ def about():
 
 @app.route("/addemp", methods=['POST'])
 def AddEmp():
-    emp_id = request.form['emp_id']
+    uid = request.form['uid']
     first_name = request.form['first_name']
     last_name = request.form['last_name']
-    pri_skill = request.form['pri_skill']
-    location = request.form['location']
+    email = request.form['email']
 
     insert_sql = "INSERT INTO employee VALUES (%s, %s, %s, %s, %s)"
     cursor = db_conn.cursor()
 
     try:
-        cursor.execute(insert_sql, (emp_id, first_name, last_name, pri_skill, location))
+        cursor.execute(insert_sql, (uid, first_name, last_name, email, "University of South Florida"))
         db_conn.commit()
-        emp_name = "" + first_name + " " + last_name
+        student_name = "" + first_name + " " + last_name
     finally:
         cursor.close()
 
     print("all modification done...")
-    return render_template('AddEmpOutput.html', name=emp_name)
+    return render_template('AddEmpOutput.html', name=student_name, uid=uid, email=email)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
