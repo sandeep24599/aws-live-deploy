@@ -80,6 +80,5 @@ def AddEmp():
     print("all modification done...")
     return render_template('AddEmpOutput.html', name=emp_name)
 
-
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
