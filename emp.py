@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request
 from pymysql import connections
-import os
 from config import *
 
 app = Flask(__name__)
@@ -19,11 +18,6 @@ table = 'employee'
 @app.route("/", methods=['GET', 'POST'])
 def home():
     return render_template('AddEmp.html')
-
-
-@app.route("/about", methods=['POST'])
-def about():
-    return render_template('www.intellipaat.com')
 
 
 @app.route("/addemp", methods=['POST'])
