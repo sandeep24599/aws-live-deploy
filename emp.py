@@ -1,12 +1,9 @@
 from flask import Flask, render_template, request
 from pymysql import connections
 import os
-import boto3
 from config import *
 
 app = Flask(__name__)
-
-region = customregion
 
 db_conn = connections.Connection(
     host=customhost,
@@ -14,15 +11,14 @@ db_conn = connections.Connection(
     user=customuser,
     password=custompass,
     db=customdb
-
 )
-output = {}
-table = 'student'
 
+output = {}
+table = 'employee'
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
-    return render_template('AddEmp.html', title="University of South Florida")
+    return render_template('AddEmp.html')
 
 
 @app.route("/about", methods=['POST'])
@@ -32,23 +28,28 @@ def about():
 
 @app.route("/addemp", methods=['POST'])
 def AddEmp():
-    uid = request.form['uid']
+    emp_id = request.form['emp_id']
     first_name = request.form['first_name']
     last_name = request.form['last_name']
+    pri_skill = request.form['pri_skill']
+    location = request.form['location']
     email = request.form['email']
 
-    insert_sql = "INSERT INTO employee VALUES (%s, %s, %s, %s, %s)"
+    insert_sql = "INSERT INTO employee VALUES (%s, %s, %s, %s, %s, %s)"
     cursor = db_conn.cursor()
 
     try:
-        cursor.execute(insert_sql, (uid, first_name, last_name, email, "University of South Florida"))
+        cursor.execute(insert_sql, (emp_id, first_name, last_name, pri_skill, location, email))
         db_conn.commit()
-        student_name = "" + first_name + " " + last_name
+        emp_name = "" + first_name + " " + last_name
+    except Exception as e:
+        return str(e)
+
     finally:
         cursor.close()
 
     print("all modification done...")
-    return render_template('AddEmpOutput.html', name=student_name, uid=uid, email=email)
+    return render_template('AddEmpOutput.html', name=emp_name)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
