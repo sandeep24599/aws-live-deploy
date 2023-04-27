@@ -1,67 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>University of South Florida | Save Successful</title>
-	<style>
-		body {
-			background-color: lightgrey;
-			font-family: Arial, sans-serif;
-			margin: 0;
-			padding: 0;
-		}
+<center>
+	<font color="DodgerBlue" size="5" style="font-family: avenir">
+		<body bgcolor="lightgrey">
+			<h1>SAVE SUCCESSFUL</h1><br>
+			<h2>Following Employee has been added to the database</h2><br>
+			<h2>{{ name }}</h2><br>
+			<title>Add Emp Output</title>
+				<form action="http://3.134.115.108:80/" autocomplete="on" method = "GET">
 
-		h1 {
-			color: dodgerblue;
-			font-size: 36px;
-			margin-top: 50px;
-			margin-bottom: 30px;
-			text-align: center;
-		}
+					<button type="submit" style="background: grey; height: 45px; width: 200px; color:white; font:oblique;">GO BACK</button><br><br>
 
-		h2 {
-			color: black;
-			font-size: 24px;
-			margin-top: 20px;
-			margin-bottom: 10px;
-			text-align: center;
-		}
-
-		form {
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			margin-top: 30px;
-		}
-
-		button {
-			background-color: grey;
-			border: none;
-			border-radius: 5px;
-			color: white;
-			cursor: pointer;
-			font-size: 18px;
-			height: 45px;
-			margin-top: 30px;
-			padding: 10px 20px;
-			text-align: center;
-			text-decoration: none;
-			transition-duration: 0.4s;
-			width: 200px;
-		}
-
-		button:hover {
-			background-color: #333;
-		}
-	</style>
+				</form>
+		</body>
+	</font>
+</center>
 </head>
 <body>
-	<h1>Save Successful</h1>
-	<h2>Following record has been added to the database</h2>
-	<h2>Student UID: {{ uid }}</h2>
-	<h2>Name: {{ name }}</h2>
-	<h2>Email: {{ email }}@usf.edu</h2>
-	<form action="/" method="GET">
-		<button type="submit">Go Back to Home</button>
-	</form>
+
 </body>
 </html>
